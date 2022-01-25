@@ -72,4 +72,6 @@ public class Ex1 {
 // List<Student> myStudentList = ...
 // s.o.p.(transform(myStudentList, ... some lambda ...)
 
+// for example (and try this one, it should work... what
+// does it do?)
 // s.o.p.(transform(myStudentList, s -> s.getCourses())
