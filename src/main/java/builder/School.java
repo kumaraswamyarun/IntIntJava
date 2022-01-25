@@ -92,9 +92,10 @@ public class School {
 
     showAllByCriterion(school,
 //        (Student s) -> { return s.getGpa() > 3; }
-        (@Deprecated var s) -> { return s.getGpa() > 3; }
+//        (@Deprecated var s) -> { return s.getGpa() > 3; }
 //        (s) -> { return s.getGpa() > 3; }
 //        s -> { return s.getGpa() > 3; }
+        s -> s.getGpa() > 3
     );
 
     // lambda can ONLY be used where the compiler KNOWS
@@ -123,5 +124,9 @@ public class School {
   }
 }
 
-// more variation on lambda format
-// interface types for lambdas
+// Exercise time:
+// Write some lambdas!
+// variety of forms (argument lists with/without types/using var)
+// - body vs simple expression
+// one argument, two arguments
+// List.replaceAll, List.sort
