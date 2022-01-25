@@ -3,7 +3,8 @@ package uselambdas;
 import builder.Student;
 
 import java.util.List;
-import static uselambdas.Ex1.transform;
+
+import static uselambdas.Ex1.*;
 
 public class Lab2Solution {
   public static void main(String[] args) {
@@ -31,5 +32,16 @@ public class Lab2Solution {
     System.out.println(transform(school,
         s -> String.format("%s takes %d courses and has a gpa of %3.1f",
             s.getName(), s.getCourses().size(), s.getGpa())));
+
+    System.out.println(transform(
+        filter(school, s -> s.getGpa() < 3.5),
+        s -> s.getName() + " is a smart student with gpa " + s.getGpa()));
+
+//    mySpecialIterable
+//        .filter(...)
+//    .map(...)
+
+    System.out.println(flatMap(filter(school, (Student s) -> s.getGpa() < 3.5),
+        s -> s.getCourses()));
   }
 }

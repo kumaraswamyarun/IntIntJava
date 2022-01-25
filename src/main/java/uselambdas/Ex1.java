@@ -1,7 +1,9 @@
 package uselambdas;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.function.UnaryOperator;
@@ -10,11 +12,23 @@ public class Ex1 {
 
   // this method is normally called "map"
   public static <A, R> List<R> transform(
-      List<A> in, Function<A, R> op) {
+      Iterable<A> in, Function<A, R> op) {
     List<R> results = new ArrayList<>();
     for (A s : in) {
       R val = op.apply(s);
       results.add(val);
+    }
+    return results;
+  }
+
+  public static <A, R> List<R> flatMap(
+      Iterable<A> in, Function<A, Iterable<R>> op) {
+    List<R> results = new ArrayList<>();
+    for (A s : in) {
+      Iterable<R> manyR = op.apply(s);
+      for (R r : manyR) {
+        results.add(r);
+      }
     }
     return results;
   }
@@ -28,9 +42,20 @@ public class Ex1 {
   // Q2) What will the function's declaration
   // (signature, if you prefer) look like?
   public static <A> List<A> filter(
-      List<A> in, Predicate<A> op) {
+      Iterable<A> in, Predicate<A> op) {
+    List<A> results = new ArrayList<>();
+    for (A a : in) {
+      if (op.test(a)) results.add(a);
+    }
+    return results;
+  }
 
-    return null; // fix this!
+  public static <A> List<A> distinct(Iterable<A> in) {
+    Set<A> results = new HashSet<>();
+    for (A a : in) {
+      results.add(a);
+    }
+    return List.copyOf(new ArrayList<>(results));
   }
 
   public static void main(String[] args) {
