@@ -130,3 +130,6 @@ public class School {
 // - body vs simple expression
 // one argument, two arguments
 // List.replaceAll, List.sort
+// Comparator, takes 2 arguments 9, 3 and "does a subtraction"
+// here 9 - 3 => 6 (positive)... that tells us that 9 "comes after" 3
+// if we have arguments 7, 11 we get -4... negative says 7 "comes before" 11
