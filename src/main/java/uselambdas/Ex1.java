@@ -3,10 +3,12 @@ package uselambdas;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.function.UnaryOperator;
 
 public class Ex1 {
 
+  // this method is normally called "map"
   public static <A, R> List<R> transform(
       List<A> in, Function<A, R> op) {
     List<R> results = new ArrayList<>();
@@ -15,6 +17,20 @@ public class Ex1 {
       results.add(val);
     }
     return results;
+  }
+
+  // think about a function... It takes a list
+  // and produces a new list containing *some*
+  // of the items from the original list.
+  // Q1) How will we specify how the function
+  // decides whether any one item is copied to
+  // the output list, or not? -- Predicate<ListContentType>
+  // Q2) What will the function's declaration
+  // (signature, if you prefer) look like?
+  public static <A> List<A> filter(
+      List<A> in, Predicate<A> op) {
+
+    return null; // fix this!
   }
 
   public static void main(String[] args) {
