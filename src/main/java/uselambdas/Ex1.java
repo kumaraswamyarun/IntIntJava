@@ -69,5 +69,7 @@ public class Ex1 {
 //     "Fred takes 2 courses and has a gpa of 3.2"
 //
 // What I'm expecting this to "look like"
+// List<Student> myStudentList = ...
 // s.o.p.(transform(myStudentList, ... some lambda ...)
+
 // s.o.p.(transform(myStudentList, s -> s.getCourses())
