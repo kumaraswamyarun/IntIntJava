@@ -10,6 +10,14 @@ public class UseClosure {
     return t -> !test.test(t);
   }
 
+  public static <T> Predicate<T> and(Predicate<T> first, Predicate<T> second) {
+    return t -> first.test(t) && second.test(t);
+  }
+
+  public static <T> Predicate<T> or(Predicate<T> first, Predicate<T> second) {
+    return t -> first.test(t) || second.test(t);
+  }
+
   // create "and", and "or"
 
   public static void main(String[] args) {
@@ -30,5 +38,15 @@ public class UseClosure {
     school.stream().filter(smart).forEach(System.out::println);
     System.out.println("-------------");
     school.stream().filter(negate(smart)).forEach(System.out::println);
+    System.out.println("-------------");
+    Predicate nsamtoc = and(negate(Student.getSmartnessPredicate(3.3)),
+        s -> s.getCourses().size() > 1);
+    school.stream().filter(nsamtoc).forEach(System.out::println);
+    System.out.println("-------------");
+    school.stream().filter(
+        Student.getSmartnessPredicate(3.3)
+            .negate()
+            .and(s -> s.getCourses().size() > 1)
+    ).forEach(System.out::println);
   }
 }
