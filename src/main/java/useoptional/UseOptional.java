@@ -30,3 +30,6 @@ public class UseOptional {
 // reduce/collect/collectors
 // parallel
 // closure
+// exceptions
+// generic types, bounds, co/contravariance
+// annotations, more reflection
