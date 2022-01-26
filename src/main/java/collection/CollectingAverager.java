@@ -1,11 +1,8 @@
-package reduction;
+package collection;
 
 import java.util.Optional;
 import java.util.concurrent.ThreadLocalRandom;
-import java.util.function.BiFunction;
 
-// this would make a great 'record' if you're using
-// Java 16 or newer :)
 class Average {
   private double sum = 0.0;
   private long count = 0;
@@ -16,13 +13,15 @@ class Average {
     this.count = count;
   }
 
-  public Average include(double d) {
-    return new Average(this.sum + d, this.count + 1);
+  public void include(double d) {
+    this.sum += d;
+    this.count++;
   }
 
-  public Average merge(Average other) {
+  public void merge(Average other) {
     System.out.println("Running the merge!!!!");
-    return new Average(this.sum + other.sum, this.count + other.count);
+    this.sum += other.sum;
+    this.count += other.count;
   }
 
   public Optional<Double> get() {
@@ -31,18 +30,14 @@ class Average {
   }
 }
 
-public class ReducingAvererager {
+public class CollectingAverager {
   public static void main(String[] args) {
-//    BiFunction<Average, Double, Average> bfada = (a, d) -> a.include(d);
-
     long start = System.nanoTime();
-
     // use -XX:+PrintCompilation to see the JIT compiling your code...
-    // TLAB (Thread-Local allocation buffer)
-    ThreadLocalRandom.current().doubles(4_000_000_000L, -Math.PI, +Math.PI)
+
+    ThreadLocalRandom.current().doubles(8_000_000_000L, -Math.PI, +Math.PI)
         .parallel()
-        .boxed()
-        .reduce(new Average(),
+        .collect(() -> new Average(),
             (a, d) -> a.include(d),
             (a1, a2) -> a1.merge(a2))
         .get()
@@ -51,7 +46,6 @@ public class ReducingAvererager {
 
     long time = System.nanoTime() - start;
     System.out.println("calculation took "
-        + (time / 1_000_000_000.0) + "seconds");
-
+        + (time / 1_000_000_000.0) + " seconds");
   }
 }
