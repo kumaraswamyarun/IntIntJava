@@ -2,6 +2,7 @@ package builder;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 
 public class Student {
   private String name;
@@ -84,6 +85,12 @@ public class Student {
         ", gpa=" + gpa +
         ", courses=" + courses +
         '}';
+  }
+
+  public static Predicate<Student> getSmartnessPredicate(
+      /*final*/ double threshold) {
+//    threshold++;
+    return s -> s.gpa > threshold;
   }
 
   public static void main(String[] args) {
