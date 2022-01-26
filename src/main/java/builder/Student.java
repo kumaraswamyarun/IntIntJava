@@ -24,6 +24,13 @@ public class Student {
     return gpa;
   }
 
+  public Student withGpa(double gpa) {
+    if (!isValid(this.name, gpa, this.courses)) {
+      throw new IllegalArgumentException("Bad values for Student");
+    }
+    return new Student(this.name, gpa, this.courses);
+  }
+
   public List<String> getCourses() {
     return courses;
   }

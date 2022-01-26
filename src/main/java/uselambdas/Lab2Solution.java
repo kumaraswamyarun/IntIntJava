@@ -43,5 +43,7 @@ public class Lab2Solution {
 
     System.out.println(flatMap(filter(school, (Student s) -> s.getGpa() < 3.5),
         s -> s.getCourses()));
+
+
   }
 }
