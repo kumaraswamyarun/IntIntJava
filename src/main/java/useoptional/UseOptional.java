@@ -26,3 +26,7 @@ public class UseOptional {
         .ifPresent(System.out::println);
   }
 }
+
+// reduce/collect/collectors
+// parallel
+// closure
