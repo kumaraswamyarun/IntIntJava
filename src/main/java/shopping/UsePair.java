@@ -11,7 +11,7 @@ public class UsePair {
 
   public static void main(String[] args) {
 //    Pair<String> p = new Pair<String>("Hello", LocalDate.now());
-    Pair<String> p = new Pair<String>("Hello", "Bonjour"/*, String.class*/);
+    Pair<String> p = new Pair<>("Hello", "Bonjour"/*, String.class*/);
     String l = p.getLeft();
 
 //    breakAPair(p);
